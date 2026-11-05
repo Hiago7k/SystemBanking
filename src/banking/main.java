@@ -2,19 +2,14 @@ package banking;
 
 public class main {
     static void main() {
-        ContaBancaria conta1 = new ContaBancaria(23213, "Hiago");
-        ContaBancaria conta2 = new ContaBancaria(123, "Dede");
-        ContaBancaria conta3 = new ContaBancaria(14345, "Nathalia");
+        ContaBancaria conta = new ContaBancaria(27323, "Hiago");
+        conta.depositar(200);
+        conta.sacar(100);
+        conta.depositar(50);
+        conta.sacar(1000);
 
-        conta1.depositar(1000);
-        conta2.depositar(3000);
-        conta3.depositar(2300);
+        conta.exibirHistorico();
 
-        conta1.aplicarTaxaManutencao();
-        conta2.aplicarTaxaManutencao();
-
-        System.out.println(conta1.getSaldo());
-        System.out.println(conta2.getSaldo());
 
 
     }

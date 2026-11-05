@@ -1,10 +1,14 @@
 package banking;
 
+import java.util.LinkedList;
+
 public class ContaBancaria {
     private int numeroConta;
     private String nomeTitular;
     private double saldo;
     private static double taxa = 30;
+
+    private LinkedList<String> historico = new LinkedList<>();
 
     public ContaBancaria(int numeroConta, String nomeTitular) {
         this.numeroConta = numeroConta;
@@ -39,10 +43,11 @@ public class ContaBancaria {
     public boolean depositar(double saldo) {
         if (saldo > 0) {
             this.saldo += saldo;
+            historico.add("deposito realizado no valor de R$ " + saldo);
             return true;
         } else {
             System.out.println("Erro valor invalido!");
-            return false; // so para exibir true ou false, preferi usar retorno boolean
+            return false;
         }
     }
 
@@ -54,8 +59,6 @@ public class ContaBancaria {
     }
 
     public boolean sacar(double saldo) {
-        // poderia fazer os dois ifs utilizando ||
-        // porem assim fica mais légivel e consigo usar mensagens especificas
         if (saldo <= 0) {
             System.out.println("Erro não pode sacar números menores ou igual a 0");
             return false;
@@ -67,6 +70,7 @@ public class ContaBancaria {
         }
 
         this.saldo -= saldo;
+        historico.add("saque realizado no valor de R$ " + saldo);
         return true;
     }
 
@@ -79,7 +83,14 @@ public class ContaBancaria {
         if (taxa <= this.saldo){
             this.saldo -= taxa;
         }else {
-            saldo = 0; // desconta oque tem não deixa o saldo zerado
+            saldo = 0;
+        }
+    }
+
+    public void exibirHistorico(){
+        System.out.println("---- Extrato ----");
+        for (String log : historico){
+            System.out.println(log);
         }
     }
 }
