@@ -4,6 +4,7 @@ public class ContaBancaria {
     private int numeroConta;
     private String nomeTitular;
     private double saldo;
+    private static double taxa = 30;
 
     public ContaBancaria(int numeroConta, String nomeTitular) {
         this.numeroConta = numeroConta;
@@ -72,5 +73,13 @@ public class ContaBancaria {
     public double consultarSaldo() {
         System.out.println("Seu saldo é de...");
         return this.getSaldo();
+    }
+
+    public void aplicarTaxaManutencao(){
+        if (taxa <= this.saldo){
+            this.saldo -= taxa;
+        }else {
+            saldo = 0; // desconta oque tem não deixa o saldo zerado
+        }
     }
 }
